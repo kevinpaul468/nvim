@@ -99,12 +99,21 @@ require('lspconfig')['yamlls'].setup {
   }
 
 
---   lspconfig.clangd.setup({
---     cmd = {"clangd", "--compile-commands-dir=" .. vim.loop.cwd() },
---     filetypes = { "c", "cpp", "objc", "objcpp", "arduino" },
---     init_options = {
---         usePlaceholders = true,
---         completeUnimported = true,
---     },
--- })
---
+require('lspconfig')['gopls'].setup {
+    capabilities = capabilities
+  }
+
+require('lspconfig')['tflint'].setup {
+    capabilities = capabilities
+  }
+--[[
+   lspconfig.clangd.setup({
+     cmd = {"clangd", "--compile-commands-dir=" .. vim.loop.cwd() },
+     filetypes = { "c", "cpp", "objc", "objcpp", "arduino" },
+     init_options = {
+         usePlaceholders = true,
+         completeUnimported = true,
+     },
+ })
+
+ ]]--

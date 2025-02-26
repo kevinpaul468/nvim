@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/kevin/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/kevin/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
+local package_path_str = "/home/kevin/.cache/nvim/packer_hererocks/2.1.1723681758/share/lua/5.1/?.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1723681758/share/lua/5.1/?/init.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1723681758/lib/luarocks/rocks-5.1/?.lua;/home/kevin/.cache/nvim/packer_hererocks/2.1.1723681758/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/kevin/.cache/nvim/packer_hererocks/2.1.1723681758/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -80,9 +80,13 @@ _G.packer_plugins = {
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
   ale = {
-    loaded = true,
-    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/ale",
-    url = "https://github.com/dense-analysis/ale"
+    commands = { "ALEEnable" },
+    config = { "vim.cmd[[ALEEnable]]" },
+    loaded = false,
+    needs_bufread = true,
+    only_cond = false,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/ale",
+    url = "https://github.com/w0rp/ale"
   },
   ["auto-pairs"] = {
     loaded = true,
@@ -112,7 +116,7 @@ _G.packer_plugins = {
   ["cmp-git"] = {
     loaded = true,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/cmp-git",
-    url = "https://github.com/petertriho/cmp-git"
+    url = "https://github.com/hrsh7th/cmp-git"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
@@ -129,20 +133,32 @@ _G.packer_plugins = {
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["completion-nvim"] = {
+    after = { "vim-vsnip", "vim-vsnip-integ" },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/completion-nvim",
+    url = "https://github.com/haorenW1025/completion-nvim"
+  },
+  firenvim = {
+    loaded = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/firenvim",
+    url = "https://github.com/glacambre/firenvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["galaxyline.nvim"] = {
+    loaded = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/galaxyline.nvim",
+    url = "https://github.com/glepnir/galaxyline.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
-  },
-  lazygit = {
-    loaded = true,
-    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/lazygit",
-    url = "https://github.com/jesseduffield/lazygit"
   },
   ["lualine.nvim"] = {
     loaded = true,
@@ -150,14 +166,22 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["markdown-preview.nvim"] = {
-    loaded = true,
-    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    commands = { "MarkdownPreview" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-comment"] = {
+    loaded = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/nvim-comment",
+    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -175,10 +199,9 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = false,
-    needs_bufread = false,
-    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
-    url = "https://github.com/nvim-tree/nvim-web-devicons"
+    loaded = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -191,9 +214,15 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["toggleterm.nvim"] = {
+    config = { "\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0" },
     loaded = true,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  undotree = {
+    loaded = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/start/undotree",
+    url = "https://github.com/mbbill/undotree"
   },
   vim = {
     loaded = true,
@@ -207,12 +236,68 @@ _G.packer_plugins = {
     only_cond = false,
     path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/vim-matchup",
     url = "https://github.com/andymass/vim-matchup"
+  },
+  ["vim-vsnip"] = {
+    load_after = {
+      ["completion-nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = true,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/vim-vsnip",
+    url = "https://github.com/hrsh7th/vim-vsnip"
+  },
+  ["vim-vsnip-integ"] = {
+    after_files = { "/home/kevin/.local/share/nvim/site/pack/packer/opt/vim-vsnip-integ/after/plugin/vsnip_integ.vim" },
+    load_after = {
+      ["completion-nvim"] = true
+    },
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/kevin/.local/share/nvim/site/pack/packer/opt/vim-vsnip-integ",
+    url = "https://github.com/hrsh7th/vim-vsnip-integ"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: toggleterm.nvim
+time([[Config for toggleterm.nvim]], true)
+try_loadstring("\27LJ\2\n8\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\15toggleterm\frequire\0", "config", "toggleterm.nvim")
+time([[Config for toggleterm.nvim]], false)
+
+-- Command lazy-loads
+time([[Defining lazy-load commands]], true)
+pcall(vim.api.nvim_create_user_command, 'MarkdownPreview', function(cmdargs)
+          require('packer.load')({'markdown-preview.nvim'}, { cmd = 'MarkdownPreview', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'markdown-preview.nvim'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('MarkdownPreview ', 'cmdline')
+      end})
+pcall(vim.api.nvim_create_user_command, 'ALEEnable', function(cmdargs)
+          require('packer.load')({'ale'}, { cmd = 'ALEEnable', l1 = cmdargs.line1, l2 = cmdargs.line2, bang = cmdargs.bang, args = cmdargs.args, mods = cmdargs.mods }, _G.packer_plugins)
+        end,
+        {nargs = '*', range = true, bang = true, complete = function()
+          require('packer.load')({'ale'}, {}, _G.packer_plugins)
+          return vim.fn.getcompletion('ALEEnable ', 'cmdline')
+      end})
+time([[Defining lazy-load commands]], false)
+
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType bash ++once lua require("packer.load")({'ale'}, { ft = "bash" }, _G.packer_plugins)]]
+vim.cmd [[au FileType sh ++once lua require("packer.load")({'ale'}, { ft = "sh" }, _G.packer_plugins)]]
+vim.cmd [[au FileType zsh ++once lua require("packer.load")({'ale'}, { ft = "zsh" }, _G.packer_plugins)]]
+vim.cmd [[au FileType cmake ++once lua require("packer.load")({'ale'}, { ft = "cmake" }, _G.packer_plugins)]]
+vim.cmd [[au FileType racket ++once lua require("packer.load")({'ale'}, { ft = "racket" }, _G.packer_plugins)]]
+vim.cmd [[au FileType tex ++once lua require("packer.load")({'ale'}, { ft = "tex" }, _G.packer_plugins)]]
+vim.cmd [[au FileType html ++once lua require("packer.load")({'ale'}, { ft = "html" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vim ++once lua require("packer.load")({'ale'}, { ft = "vim" }, _G.packer_plugins)]]
+vim.cmd [[au FileType python ++once lua require("packer.load")({'ale'}, { ft = "python" }, _G.packer_plugins)]]
+vim.cmd [[au FileType cpp ++once lua require("packer.load")({'ale'}, { ft = "cpp" }, _G.packer_plugins)]]
+vim.cmd [[au FileType markdown ++once lua require("packer.load")({'ale'}, { ft = "markdown" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
 vim.cmd [[au VimEnter * ++once lua require("packer.load")({'vim-matchup'}, { event = "VimEnter *" }, _G.packer_plugins)]]

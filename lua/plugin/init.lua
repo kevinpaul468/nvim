@@ -11,7 +11,7 @@ return require('packer').startup(function(use)
 
 	use {
 		'w0rp/ale',
-		ft = {'sh', 'zsh', 'bash', 'c', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex', 'python'},
+		ft = {'sh', 'zsh', 'bash', 'cpp', 'cmake', 'html', 'markdown', 'racket', 'vim', 'tex', 'python'},
 		cmd = 'ALEEnable',
 		config = 'vim.cmd[[ALEEnable]]'
 	}
@@ -22,15 +22,30 @@ return require('packer').startup(function(use)
 		requires = {{'hrsh7th/vim-vsnip', opt = true}, {'hrsh7th/vim-vsnip-integ', opt = true}}
 	}
 
-	-- Plugins can also depend on rocks from luarocks.org:
-	use {
-		'my/supercoolplugin',
-		rocks = {'lpeg', {'lua-cjson', version = '2.1.0'}}
-	}
+	use 'neovim/nvim-lspconfig'
+	use 'hrsh7th/cmp-nvim-lsp'
+	use 'hrsh7th/cmp-buffer'
+	use 'hrsh7th/cmp-path'
+	use 'hrsh7th/cmp-cmdline'
+	use 'hrsh7th/nvim-cmp'
+	use 'hrsh7th/cmp-git'
 
-	-- You can specify rocks in isolation
-	use_rocks 'penlight'
-	use_rocks {'lua-resty-http', 'lpeg'}
+	use 'mbbill/undotree'
+
+	use "rafamadriz/friendly-snippets"
+	use "terrortylor/nvim-comment"
+
+	use "hashivim/vim-terraform"
+	use 'L3MON4D3/LuaSnip'
+	use 'saadparwaiz1/cmp_luasnip'
+
+	use 'nvim-tree/nvim-tree.lua'
+
+	use 'nvim-lualine/lualine.nvim'
+
+	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+		require("toggleterm").setup()
+	end}
 
 	-- Plugins can have post-install/update hooks
 	use {'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview'}
@@ -57,5 +72,6 @@ return require('packer').startup(function(use)
 	use {
 		'ribru17/bamboo.nvim',
 		'dracula/vim', as = 'dracula',
+		'ayu-theme/ayu-vim',
 	}
 end)
