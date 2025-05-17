@@ -25,18 +25,10 @@ local cmp = require'cmp'
       { name = 'luasnip' }, -- For luasnip users.
       {name = "path"},
       { name = 'buffer' },
+      { name = 'git' },
     })
   })
 
-  -- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'git' },
-    }, {
-      { name = 'buffer' },
-    })
- })
 require("cmp_git").setup()
 
   -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -106,14 +98,30 @@ require('lspconfig')['gopls'].setup {
 require('lspconfig')['tflint'].setup {
     capabilities = capabilities
   }
---[[
-   lspconfig.clangd.setup({
-     cmd = {"clangd", "--compile-commands-dir=" .. vim.loop.cwd() },
-     filetypes = { "c", "cpp", "objc", "objcpp", "arduino" },
-     init_options = {
-         usePlaceholders = true,
-         completeUnimported = true,
-     },
- })
 
- ]]--
+  lspconfig.clangd.setup({
+	  cmd = {"clangd", "--compile-commands-dir=" .. vim.loop.cwd() },
+	  filetypes = { "c", "cpp", "objc", "objcpp", "arduino" },
+	  init_options = {
+		  usePlaceholders = true,
+		  completeUnimported = true,
+	  },
+  })
+
+
+  -- require('lspconfig').ltex.setup {
+  -- 	  cmd = { "ltex-ls" },
+  -- 	  filetypes = { "markdown", "text" },
+  -- 	  settings = {
+  -- 		  ltex = {
+  -- 			  language = "en-US",
+  -- 		  },
+  -- 	  },
+  -- 	  flags = { debounce_text_changes = 300 },
+  -- 	  on_new_config = function(new_config)
+  -- 		  new_config.cmd = {
+  -- 			  "sh", "-c", "ltex-ls 2>/dev/null"
+  -- 		  }
+  -- 	  end,
+  -- }
+  --

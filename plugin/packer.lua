@@ -3,12 +3,34 @@ vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
+	use 'terrortylor/nvim-comment'
 
-	use 'jiangmiao/auto-pairs'
-	use {'andymass/vim-matchup', event = 'VimEnter'}
+	use 'jiangmiao/auto-pairs' -- auto pairing paranthesis
+	use 'mbbill/undotree'
+	use {
+		'andymass/vim-matchup',
+		setup = function()
+			vim.g.matchup_matchparen_offscreen = { method = "popup" }
+		end
+	} -- TODO learn about methods
 
-	use('dense-analysis/ale')
-	use 'petertriho/cmp-git'
+	use {
+		'dense-analysis/ale',
+		config = function()
+			-- Configuration goes here.
+			local g = vim.g
+
+			g.ale_ruby_rubocop_auto_correct_all = 1
+
+			g.ale_linters = {
+				ruby = {'rubocop', 'ruby'},
+				lua = {'lua_language_server'}
+			}
+		end
+	} -- lint engine
+
+	use({"petertriho/cmp-git", requires = "nvim-lua/plenary.nvim"}) -- TODO learn about this thing
+
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-path'
 	use 'hrsh7th/cmp-cmdline'
@@ -19,28 +41,27 @@ return require('packer').startup(function(use)
 	use 'saadparwaiz1/cmp_luasnip'
 	use 'neovim/nvim-lspconfig'
 
-	use 'jesseduffield/lazygit'
+	use 'jesseduffield/lazygit' --lazygit
 
-	use "iamcco/markdown-preview.nvim"
+	-- use "iamcco/markdown-preview.nvim"
 
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' } --syntax hilighting
 
 	use {"akinsho/toggleterm.nvim", tag = '*',
 		require("toggleterm").setup()
-	}
+	} -- TODO keybindings
+
 
 	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true },
-		require("lualine").setup{}
-	}
+	  'nvim-lualine/lualine.nvim',
+	  requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+	} --status line
 
 
-	use "nvim-tree/nvim-tree.lua"
+	use "nvim-tree/nvim-tree.lua" --file explorer
 
-	--git
 	use {
-		'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },
+		'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' },  --GitSigns
 	}
 
 
@@ -49,8 +70,6 @@ return require('packer').startup(function(use)
 		'ribru17/bamboo.nvim',
 		'dracula/vim', as = 'dracula',
 		'ayu-theme/ayu-vim',
-		-- require ("bamboo").load(),
-		vim.cmd("colorscheme ayu")
 	}
 
 end)
